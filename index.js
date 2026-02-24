@@ -1,43 +1,26 @@
 const express = require("express");
-const app = express();
-<<<<<<< HEAD
+const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-require("dotenv").config();
-
-// ROUTES
+const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
 
-// Middlewares
+dotenv.config();
+
+const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 
-// Brute-force garşy gorag
 const limiter = rateLimit({
-    windowMs: 60 * 1000,
-    max: 5,
-    message: "Gaty köp synanyşyk. Biraz garaşyň."
+  windowMs: 15 * 60 * 1000,
+  max: 100,
 });
-app.use("/auth", limiter);
+app.use(limiter);
 
-// ROUTES ulanmak
 app.use("/auth", authRoutes);
 
-// Test route
-app.get("/", (req, res) => {
-    res.send("TM Auksion Backend işleýär!");
-});
-
-// Server başlatmak
-app.listen(3000, () => {
-    console.log("Server 3000 portda işleýär...");
-=======
-
-app.get("/", (req, res) => {
-    res.send("TM Auksion Backend işläp dur!");
-});
-
-app.listen(3000, () => {
-    console.log("Server 3000 portda işläp başlady");
->>>>>>> 1876c7ffe24246ad93911f5a82976c27f96ebc7e
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server ${PORT} portda işleýär...`);
 });
