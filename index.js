@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+<<<<<<< HEAD
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
@@ -30,4 +31,13 @@ app.get("/", (req, res) => {
 // Server başlatmak
 app.listen(3000, () => {
     console.log("Server 3000 portda işleýär...");
+=======
+
+app.get("/", (req, res) => {
+    res.send("TM Auksion Backend işläp dur!");
+});
+
+app.listen(3000, () => {
+    console.log("Server 3000 portda işläp başlady");
+>>>>>>> 1876c7ffe24246ad93911f5a82976c27f96ebc7e
 });
